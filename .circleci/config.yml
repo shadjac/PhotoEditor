@@ -14,11 +14,14 @@ jobs:
          name: Chmod permissions
          command: sudo chmod +x ./gradlew
       - run:
+         name: Accept licenses
+         command: yes | sdkmanager --licenses
+      - run:
+         name: Update SDK
+         command: sdkmanager --update
+      - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - run:
-         name: Accept licenses
-         command: sdkmanager --update && yes | sdkmanager --licenses
       - save_cache:
           paths:
             - ~/.gradle
